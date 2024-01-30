@@ -6,14 +6,14 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AdminFormRequestUpdate extends FormRequest
+class FormaPagamentoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +24,12 @@ class AdminFormRequestUpdate extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'max:120|min:5 ',
-            'celular' => 'max:11|min:10',
-            'cpf' => '|max:11|min:11|unique:administradors,cpf,'. $this->id,
-            'senha' => ''
+
+            'nome' => 'required|max:25|unique:tipo_de_pagamentos,nome'. $this->id,
+            'taxa' => 'required|max:25',
+            'status' => 'required|max:11|boolean'
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -42,15 +41,18 @@ class AdminFormRequestUpdate extends FormRequest
     public function messages()
     {
         return [
-            'nome.max' => 'O campo nome deve conter no máximo 120 caracteres',
-            'nome.min' => 'O campo nome deve conter no minimo 5 caracteres',
-            'email.max' => 'O campo e-mail deve conter no máximo 120 caracteres',
-            'email.email' => 'Formato de email invalido',
-            'email.unique' => 'E-mail já cadastrado',
-            'cpf.max' => 'CPF deve conter no máximo 11 caracteres',
-            'cpf.min' => 'CPF deve conter no mínimo 11 caracteres',
-            'cpf.unique' => 'CPF Já cadastrado no sistema',
-            'senha.required' => 'Senha obrigatoria'
+            'nome.required' => 'Nome Obrigatório',
+            'nome.max' => 'Máximo de caracteres é 25',
+            'nome.unique' => 'Nome ja cadastrado',
+
+            'taxa.required' => 'Taxa Obrigatória',
+            'taxa.max' => 'Máximo de caracteres é 25',
+
+            'status.required' => 'Status Obrigátorio',
+            'status.boolean' => 'Formato somente em boolean',
+            'status.max' => 'Máximo de caracteres é 11'
+
+
         ];
     }
 }

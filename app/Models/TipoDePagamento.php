@@ -9,7 +9,9 @@ class TipoDePagamento extends Model
 {
     use HasFactory;
     protected $fillable =  [
-       'tipoDePagamento'        
+       'nome',
+       'taxa' ,
+       'status'    
     ];
 
 }

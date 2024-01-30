@@ -22,24 +22,36 @@ class FormaPagamentoRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-   
     {
         return [
-            'tipoPagamento' => 'required',
+
+            'nome' => 'required|max:25|unique:pagamentos,nome',
+            'taxa' => 'required|max:25',
+            'status' => 'required|max:11|boolean'
         ];
     }
-
-    public function failedValidation(Validator $validator){
+    public function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(response()->json([
             'success' => false,
             'error' => $validator->errors()
         ]));
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'tipoPagamento.required' => 'Tipo de Pagamento Obrigatório' ,
-        
+            'nome.required' => 'Nome Obrigatório',
+            'nome.max' => 'Máximo de caracteres é 25',
+            'nome.unique' => 'Nome ja cadastrado',
+
+            'taxa.required' => 'Taxa Obrigatória',
+            'taxa.max' => 'Máximo de caracteres é 25',
+
+            'status.required' => 'Status Obrigátorio',
+            'status.boolean' => 'Formato somente em boolean',
+            'status.max' => 'Máximo de caracteres é 11'
+
 
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FormaPagamentoRequest;
+use App\Http\Requests\FormaPagamentoUpdateRequest;
 use App\Models\TipoDePagamento;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,7 @@ class TipoDePagamentoController extends Controller
         ]);
     }
 
-    public function updatePagamento(FormaPagamentoRequest $request)
+    public function updatePagamento(FormaPagamentoUpdateRequest $request)
     {
         $pagamento = TipoDePagamento::find($request->id);
 
@@ -62,5 +63,13 @@ class TipoDePagamentoController extends Controller
             'message' => 'Tipo de Pagamento Atualizado'
         ]);
     }
-
+    
+    public function retornarTodos()
+    {
+        $pagamento = TipoDePagamento::all();
+        return response()->json([
+            'status' => true,
+            'data' => $pagamento
+        ]);
+    }
 }
