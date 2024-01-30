@@ -31,7 +31,7 @@ code .
 Este projeto está licenciado sob a [MIT License](LICENSE), o que significa que você pode utilizá-lo livremente para fins educacionais, comerciais ou pessoais.
 
 ## Contato
-Em caso de dúvidas, sugestões ou problemas, sinta-se à vontade para entrar em contato através do email: claudiorobertojunior5@gmail.com
+Em caso de dúvidas, sugestões ou problemas, sinta-se à vontade para entrar em contato através do email: gp0987gp@gmail.com
 
 **Aviso**: Certifique-se de substituir "gp0987gp" no link de clonagem e "gp0987gp@gmail.com" na seção de contato pelos valores correspondentes do seu próprio usuário do GitHub e endereço de e-mail.
 
